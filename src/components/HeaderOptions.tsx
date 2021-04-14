@@ -1,12 +1,10 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useContext } from 'react'
+
 import { FcSearch } from 'react-icons/fc'
+import { SearchContext } from '../contexts/SearchContext'
 
 function HeaderOptions(): ReactElement {
-  const [selected, setSelected] = useState(true)
-
-  const handleClickSelected = () => {
-    setSelected(!selected)
-  }
+  const { selected, handleSelected, result } = useContext(SearchContext)
 
   return (
     <div
@@ -14,7 +12,7 @@ function HeaderOptions(): ReactElement {
     sm:max-w-xl lg:max-w-2xl"
     >
       <button
-        onClick={handleClickSelected}
+        onClick={() => handleSelected(!selected)}
         type="button"
         className={`flex justify-center items-center text-black ${
           selected ? 'bg-blue-500 hover:bg-blue-400' : 'hover:bg-gray-100'
@@ -27,7 +25,7 @@ function HeaderOptions(): ReactElement {
       </button>
       <div className="flex">
         <span className="ml-2 text-sm">
-          123 <strong>resultados</strong>
+          {result} <strong>resultados</strong>
         </span>
       </div>
     </div>

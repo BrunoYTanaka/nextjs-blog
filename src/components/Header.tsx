@@ -5,10 +5,12 @@ import React, {
   useState,
 } from 'react'
 import { BiSearch } from 'react-icons/bi'
+import { useRouter } from 'next/router'
 import HeaderOptions from './HeaderOptions'
 
 function Header(): ReactElement {
   const [search, setSearch] = useState('')
+  const router = useRouter()
 
   const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value)
@@ -18,7 +20,7 @@ function Header(): ReactElement {
     if (!search) {
       return
     }
-    console.log(search)
+    router.push(`/?term=${search}`)
   }
 
   const handleKeyDownSearch = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -28,27 +30,29 @@ function Header(): ReactElement {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-full p-5">
-      <div
-        className="flex w-full shadow mt-5 max-w-md rounded-full border border-gray-200 px-5 py-3 items-center
-      sm:max-w-xl lg:max-w-2xl"
-      >
-        <input
-          type="text"
-          className="w-full focus:outline-none"
-          value={search}
-          onChange={handleSearchInput}
-          onKeyDown={handleKeyDownSearch}
-        />
-        <button
-          type="button"
-          onClick={handleClickSearch}
-          className="text-blue-500 hover:text-blue-400 p-2  focus:outline-none"
+    <div className="sticky top-0 bg-white">
+      <div className="flex flex-col items-center justify-center w-full p-5">
+        <div
+          className="flex w-full shadow mt-5 max-w-md rounded-full border border-gray-200 px-5 py-3 items-center
+                     sm:max-w-xl lg:max-w-2xl"
         >
-          <BiSearch size={24} />
-        </button>
+          <input
+            type="text"
+            className="w-full focus:outline-none"
+            value={search}
+            onChange={handleSearchInput}
+            onKeyDown={handleKeyDownSearch}
+          />
+          <button
+            type="button"
+            onClick={handleClickSearch}
+            className="text-blue-500 hover:text-blue-400 p-2  focus:outline-none"
+          >
+            <BiSearch size={24} />
+          </button>
+        </div>
+        <HeaderOptions />
       </div>
-      <HeaderOptions />
     </div>
   )
 }
