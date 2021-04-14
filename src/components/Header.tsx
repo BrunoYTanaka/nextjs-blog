@@ -1,36 +1,18 @@
-import React, {
-  ReactElement,
-  ChangeEvent,
-  KeyboardEvent,
-  useState,
-} from 'react'
+import React, { ReactElement, useContext } from 'react'
 import { BiSearch } from 'react-icons/bi'
-import { useRouter } from 'next/router'
 import HeaderOptions from './HeaderOptions'
+import { SearchContext } from '../contexts/SearchContext'
 
 function Header(): ReactElement {
-  const [search, setSearch] = useState('')
-  const router = useRouter()
-
-  const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value)
-  }
-
-  const handleClickSearch = () => {
-    if (!search) {
-      return
-    }
-    router.push(`/?term=${search}`)
-  }
-
-  const handleKeyDownSearch = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      handleClickSearch()
-    }
-  }
+  const {
+    search,
+    handleClickSearch,
+    handleKeyDownSearch,
+    handleSearchInput,
+  } = useContext(SearchContext)
 
   return (
-    <div className="sticky top-0 bg-white">
+    <div className="sticky top-0 bg-white ">
       <div className="flex flex-col items-center justify-center w-full p-5">
         <div
           className="flex w-full shadow mt-5 max-w-md rounded-full border border-gray-200 px-5 py-3 items-center

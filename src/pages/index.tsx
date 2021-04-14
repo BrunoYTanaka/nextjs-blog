@@ -1,8 +1,11 @@
 import { ReactElement, useContext, useEffect } from 'react'
 import { GetServerSideProps } from 'next'
-import { SearchContext } from '../contexts/SearchContext'
+import { SearchContext, SearchProvider } from '../contexts/SearchContext'
+import Header from '../components/Header'
+import List from '../components/List'
 
 interface Item {
+  id: number
   title: string
   link: string
   headline: string
@@ -16,13 +19,14 @@ interface HomeProps {
 }
 
 export default function Home({ results }: HomeProps): ReactElement {
-  const { setResult } = useContext(SearchContext)
-
-  useEffect(() => {
-    setResult(results.data.length)
-  }, [setResult, results])
-
-  return <div className="flex flex-col">search</div>
+  return (
+    <div className="flex flex-col">
+      <SearchProvider result={results.data.length}>
+        <Header />
+      </SearchProvider>
+      <List list={results.data} />
+    </div>
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async context => {
@@ -31,7 +35,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
     const data = await fetch(
       `https://api.beta.mejorconsalud.com/wp-json/mc/v2/posts?search=${term}${
-        orderBy ? `&orderBy=${orderBy}` : ''
+        orderBy === 'relevance' ? `&orderBy=${orderBy}` : ''
       }`,
     ).then(response => response.json())
     return { props: { results: data } }
