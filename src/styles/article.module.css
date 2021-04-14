@@ -1,0 +1,60 @@
+.content {
+  margin-top: 1.25rem;
+
+  display: flex;
+}
+
+.content p {
+  margin: 15px 0;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.content h2 {
+  color: #a9d42d;
+  font-weight: 700;
+  font-size: 1.875rem;
+}
+
+.content h3 {
+  color: #374858;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin: 15px 0;
+}
+
+.content figure {
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content figure img {
+  width: 500px;
+  height: 300px;
+}
+
+.content figure figcaption {
+  position: relative;
+  text-align: left;
+  padding-left: 50px;
+}
+
+.content h4 {
+  color: #374858;
+  font-weight: 700;
+  font-size: 1.375rem;
+}
+
+.content ul {
+  padding-left: 30px;
+  margin: 25px 0;
+  list-style-type: disc;
+}
+
+.content ul li {
+  margin: 10px 0;
+}
+

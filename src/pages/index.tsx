@@ -1,6 +1,6 @@
-import { ReactElement, useContext, useEffect } from 'react'
+import { ReactElement } from 'react'
 import { GetServerSideProps } from 'next'
-import { SearchContext, SearchProvider } from '../contexts/SearchContext'
+import { SearchProvider } from '../contexts/SearchContext'
 import Header from '../components/Header'
 import List from '../components/List'
 
@@ -33,9 +33,9 @@ export const getServerSideProps: GetServerSideProps = async context => {
   if (context.query.term) {
     const { term, orderBy } = context.query
     const data = await fetch(
-      `https://api.beta.mejorconsalud.com/wp-json/mc/v2/posts?search=${term}${
-        orderBy === 'relevance' ? `&orderBy=${orderBy}` : ''
-      }`,
+      `https://api.beta.mejorconsalud.com/wp-json/mc/v2/posts?search=${encodeURIComponent(
+        term,
+      )}${orderBy === 'relevance' ? `&orderBy=${orderBy}` : ''}`,
     ).then(response => response.json())
     return { props: { results: data } }
   }
