@@ -21,7 +21,7 @@ interface HomeProps {
 export default function Home({ results }: HomeProps): ReactElement {
   return (
     <div className="flex flex-col">
-      <SearchProvider result={results.data.length}>
+      <SearchProvider result={results.data?.length || 0}>
         <Header />
       </SearchProvider>
       <List list={results.data} />
@@ -32,7 +32,6 @@ export default function Home({ results }: HomeProps): ReactElement {
 export const getServerSideProps: GetServerSideProps = async context => {
   if (context.query.term) {
     const { term, orderBy } = context.query
-
     const data = await fetch(
       `https://api.beta.mejorconsalud.com/wp-json/mc/v2/posts?search=${term}${
         orderBy === 'relevance' ? `&orderBy=${orderBy}` : ''

@@ -13,7 +13,7 @@ interface ListProps {
 function List({ list }: ListProps): ReactElement {
   return (
     <div className="w-full px-3 sm:pl-[5%] md:pl-[14%] lg:pl-52">
-      {list.map(item => {
+      {list?.map(item => {
         return <ListItem key={item.id} {...item} />
       })}
     </div>
