@@ -2,13 +2,21 @@ import React, { ReactElement } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import Metatag, { MetatagProps } from '../../components/Metatag'
+import AuthorCard from '../../components/AuthorCard'
+import Bibliography from '../../components/Bibliography'
+import Tags from '../../components/Tags'
 
 interface ArticleProps {
   id: number
   author: {
     name: string
     picture: string
+    description: string
   }
+  tags: {
+    id: number
+    name: string
+  }[]
   bibliography: string
   content: string
   title: string
@@ -21,6 +29,8 @@ function Article({
   author,
   content,
   published,
+  tags,
+  bibliography,
   metas,
 }: ArticleProps): ReactElement {
   const router = useRouter()
@@ -41,6 +51,9 @@ function Article({
         <div className="content">
           <div dangerouslySetInnerHTML={{ __html: content }} />
         </div>
+        <Tags tags={tags} />
+        <Bibliography bibliography={bibliography} />
+        <AuthorCard {...author} />
       </div>
     </>
   )

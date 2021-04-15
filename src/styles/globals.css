@@ -5,7 +5,7 @@
 
 @layer components {
   .content {
-    @apply mt-5 sm:text-sm;
+    @apply sm:text-sm;
     /* margin-top: 1.25rem;
     display: flex; */
   }
@@ -46,4 +46,5 @@
   .content ul li {
     @apply my-3;
   }
+
 }
