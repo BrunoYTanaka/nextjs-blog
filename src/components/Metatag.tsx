@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { NextSeo } from 'next-seo'
 
-interface Metatag {
+export interface MetatagProps {
   ampUrl: string
   canonical: string
   'og:type': string
@@ -37,7 +37,7 @@ function Metatag({
   'article:section': articleSection,
   'twitter:site': twitterSite,
   'twitter:creator': twitterCreator,
-}: Metatag): ReactElement {
+}: MetatagProps): ReactElement {
   return (
     <NextSeo
       title={ogTitle}
@@ -62,6 +62,11 @@ function Metatag({
             height: ogImageHeight,
           },
         ],
+      }}
+      twitter={{
+        cardType: 'summary',
+        handle: twitterCreator,
+        site: twitterSite,
       }}
     />
   )

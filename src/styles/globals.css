@@ -1,3 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components {
+  .content {
+    @apply mt-5 sm:text-sm;
+    /* margin-top: 1.25rem;
+    display: flex; */
+  }
+
+  .content p {
+    @apply my-4 md:text-lg text-sm;
+  }
+
+  .content h2 {
+    @apply text-gray-600 font-bold md:text-4xl text-xl my-5;
+  }
+
+  .content h3 {
+    @apply text-gray-400 font-bold md:text-2xl text-base my-4;
+  }
+
+  .content figure {
+    @apply flex flex-col items-center my-4;
+  }
+
+  .content figure img {
+    width: 500px;
+    height: 300px;
+  }
+
+  .content figure figcaption {
+    @apply absolute text-left;
+  }
+
+  .content h4 {
+    @apply text-gray-600 font-bold text-lg;
+  }
+
+  .content ul {
+    @apply pl-7 my-6 list-disc;
+  }
+
+  .content ul li {
+    @apply my-3;
+  }
+}
