@@ -1,6 +1,8 @@
 import React, { ReactElement } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import styles from '../styles/article.module.css'
+import { useRouter } from 'next/router'
+import styles from '../../styles/article.module.css'
+import Metatag from '../../components/Metatag'
 
 interface ArticleProps {
   id: number
@@ -12,6 +14,13 @@ interface ArticleProps {
   content: string
   title: string
   published: string
+  metas: {
+    ampUrl: string
+    'og:site_name': string
+    'og:title': string
+    'og:description': string
+    'og:image': string
+  }
 }
 
 function Article({
@@ -19,18 +28,28 @@ function Article({
   author,
   content,
   published,
+  metas,
 }: ArticleProps): ReactElement {
+  const router = useRouter()
+
+  if (router.isFallback) {
+    return <div />
+  }
+
   return (
-    <div className="flex flex-col justify-center items-center p-5">
-      <header className="text-4xl font-bold text-blue-400">{title}</header>
-      <div className="w-full flex flex-row mt-4 items-start">
-        <div className="text-sm text-red-400 font-normal ">{author.name}</div>
-        <div className="text-sm ml-2">{published}</div>
+    <>
+      <Metatag {...metas} />
+      <div className="flex flex-col justify-center items-center p-5">
+        <header className="text-4xl font-bold text-blue-400">{title}</header>
+        <div className="w-full flex flex-row mt-4 items-start">
+          <div className="text-sm text-red-400 font-normal ">{author.name}</div>
+          <div className="text-sm ml-2">{published}</div>
+        </div>
+        <div className={styles.content}>
+          <div dangerouslySetInnerHTML={{ __html: content }} />
+        </div>
       </div>
-      <div className={styles.content}>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
-      </div>
-    </div>
+    </>
   )
 }
 

@@ -1,5 +1,6 @@
 import { ReactElement } from 'react'
 import { GetServerSideProps } from 'next'
+import Head from 'next/head'
 import { SearchProvider } from '../contexts/SearchContext'
 import Header from '../components/Header'
 import List from '../components/List'
@@ -21,7 +22,11 @@ interface HomeProps {
 export default function Home({ results }: HomeProps): ReactElement {
   return (
     <div className="flex flex-col">
-      <SearchProvider result={results.data?.length || 0}>
+      <Head>
+        <title>Translation Inc.</title>
+        <meta name="description" content="Busca com wp" />
+      </Head>
+      <SearchProvider result={results.size}>
         <Header />
       </SearchProvider>
       <List list={results.data} />
@@ -34,7 +39,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
     const { term, orderBy } = context.query
     const data = await fetch(
       `https://api.beta.mejorconsalud.com/wp-json/mc/v2/posts?search=${encodeURIComponent(
-        term,
+        term as string,
       )}${orderBy === 'relevance' ? `&orderBy=${orderBy}` : ''}`,
     ).then(response => response.json())
     return { props: { results: data } }
