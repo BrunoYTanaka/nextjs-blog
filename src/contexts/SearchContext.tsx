@@ -44,17 +44,18 @@ export function SearchProvider({
   }, [setSelected, router.query.orderby])
 
   useEffect(() => {
-    if (router.query.term) {
-      setSearch(router.query.term as string)
+    if (router.query.search) {
+      setSearch(router.query.search as string)
     }
-  }, [setSearch, router.query.term])
+  }, [setSearch, router.query.search])
 
   const handleSelected = (value: boolean) => {
-    const query = router.query.term
+    const query = router.query.search
+    const { page } = router.query
     if (value) {
-      router.push(`/?term=${query}&orderby=relevance`)
+      router.push(`/?search=${query}&page=${page}&orderby=relevance`)
     } else {
-      router.push(`/?term=${query}`)
+      router.push(`/?search=${query}&page=${page}`)
     }
   }
 
@@ -66,7 +67,10 @@ export function SearchProvider({
     if (!search) {
       return
     }
-    router.push(`/?term=${search}${selected ? '&orderby=relevance' : ''}`)
+    const { page } = router.query
+    router.push(
+      `/?search=${search}&page=${page}${selected ? '&orderby=relevance' : ''}`,
+    )
   }
 
   const handleKeyDownSearch = (e: KeyboardEvent<HTMLInputElement>) => {

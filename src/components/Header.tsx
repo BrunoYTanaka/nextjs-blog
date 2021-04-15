@@ -12,8 +12,8 @@ function Header(): ReactElement {
   } = useContext(SearchContext)
 
   return (
-    <div className="sticky top-0 bg-white ">
-      <div className="flex flex-col items-center justify-center w-full p-5">
+    <div className="sticky top-0 bg-white">
+      <div className="w-full px-3 sm:pl-[5%] md:pl-[14%] lg:pl-52 flex-grow">
         <div
           className="flex w-full shadow mt-5 max-w-md rounded-full border border-gray-200 px-5 py-3 items-center
                      sm:max-w-xl lg:max-w-2xl"

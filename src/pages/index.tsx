@@ -5,6 +5,7 @@ import { SearchProvider } from '../contexts/SearchContext'
 import Header from '../components/Header'
 import List from '../components/List'
 import api from '../services/api'
+import Pagination from '../components/Pagination'
 
 interface Item {
   id: number
@@ -22,7 +23,7 @@ interface HomeProps {
 
 export default function Home({ results }: HomeProps): ReactElement {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-screen justify-between ">
       <Head>
         <title>Translation Inc.</title>
         <meta name="description" content="Busca com wp" />
@@ -31,18 +32,19 @@ export default function Home({ results }: HomeProps): ReactElement {
         <Header />
       </SearchProvider>
       <List list={results.data} />
+      <Pagination size={results.size} />
     </div>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async context => {
-  if (context.query.term) {
-    const { term, orderBy } = context.query
+  if (context.query.search) {
+    const { search, orderby, page } = context.query
     const data = await api
       .get(
-        `/v2/posts?search=${encodeURIComponent(term as string)}${
-          orderBy === 'relevance' ? `&orderBy=${orderBy}` : ''
-        }`,
+        `/v2/posts?search=${encodeURIComponent(search as string)}${
+          orderby === 'relevance' ? `&orderby=${orderby}` : ''
+        }&page=${page}`,
       )
       .then(response => response.data)
     return { props: { results: data } }

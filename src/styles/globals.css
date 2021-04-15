@@ -47,4 +47,16 @@
     @apply my-3;
   }
 
+  .pagination {
+    @apply flex my-0 shadow rounded-md border border-gray-300 divide-x mx-auto lg:mx-0;
+  }
+
+  .pagination-page {
+    @apply lg:px-6 lg:py-4 text-gray-600 font-bold text-sm text-center hover:bg-gray-100 focus:outline-none px-4 py-2;
+  }
+
+ .pagination-page-active {
+    @apply bg-gray-200;
+  }
+
 }
