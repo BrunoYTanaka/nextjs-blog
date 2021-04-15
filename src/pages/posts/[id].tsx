@@ -5,6 +5,7 @@ import Metatag, { MetatagProps } from '../../components/Metatag'
 import AuthorCard from '../../components/AuthorCard'
 import Bibliography from '../../components/Bibliography'
 import Tags from '../../components/Tags'
+import api from '../../services/api'
 
 interface ArticleProps {
   id: number
@@ -62,9 +63,7 @@ function Article({
 export default Article
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await fetch(
-    `https://api.beta.mejorconsalud.com/wp-json/mc/v1/posts`,
-  ).then(response => response.json())
+  const data = await api.get(`/v1/posts`).then(response => response.data)
 
   return {
     paths: data.map((item: { id: number }) => ({
@@ -76,9 +75,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async context => {
   const { params } = context
-  const data = await fetch(
-    `https://api.beta.mejorconsalud.com/wp-json/mc/v1/posts/${params.id}`,
-  ).then(response => response.json())
+  const data = await api
+    .get(`/v1/posts/${params.id}`)
+    .then(response => response.data)
 
   return { props: { ...data } }
 }

@@ -66,7 +66,7 @@ export function SearchProvider({
     if (!search) {
       return
     }
-    router.push(`/?term=${search}`)
+    router.push(`/?term=${search}${selected ? '&orderby=relevance' : ''}`)
   }
 
   const handleKeyDownSearch = (e: KeyboardEvent<HTMLInputElement>) => {
