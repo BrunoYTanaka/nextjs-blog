@@ -31,7 +31,7 @@ export default function Home({ results }: HomeProps): ReactElement {
       <SearchProvider result={results.size}>
         <Header />
       </SearchProvider>
-      <List list={results.data} />
+      <List list={results.data} size={results.size} />
       <Pagination size={results.size} />
     </div>
   )
@@ -49,5 +49,5 @@ export const getServerSideProps: GetServerSideProps = async context => {
       .then(response => response.data)
     return { props: { results: data } }
   }
-  return { props: { results: [] } }
+  return { props: { results: { data: [], size: 0, pages: 0 } } }
 }

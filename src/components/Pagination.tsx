@@ -25,7 +25,7 @@ function Pagination({ size }: PaginationProps): ReactElement {
 
     router.push(
       `/?search=${search}${
-        orderby === 'relevance' ? `&orderBy=${orderby}` : ''
+        orderby === 'relevance' ? `&orderby=${orderby}` : ''
       }&page=${newPage}`,
     )
   }
@@ -40,6 +40,10 @@ function Pagination({ size }: PaginationProps): ReactElement {
 
   const handleMoveRight = () => {
     gotoPage(currentPage + pageNeighbours * 2 + 1)
+  }
+
+  if (totalPages <= 1) {
+    return null
   }
 
   return (

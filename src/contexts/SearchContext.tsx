@@ -50,12 +50,12 @@ export function SearchProvider({
   }, [setSearch, router.query.search])
 
   const handleSelected = (value: boolean) => {
-    const query = router.query.search
-    const { page } = router.query
+    const { page = 1 } = router.query
+    if (!search) return
     if (value) {
-      router.push(`/?search=${query}&page=${page}&orderby=relevance`)
+      router.push(`/?search=${search}&page=${page}&orderby=relevance`)
     } else {
-      router.push(`/?search=${query}&page=${page}`)
+      router.push(`/?search=${search}&page=${page}`)
     }
   }
 
@@ -67,9 +67,8 @@ export function SearchProvider({
     if (!search) {
       return
     }
-    const { page } = router.query
     router.push(
-      `/?search=${search}&page=${page}${selected ? '&orderby=relevance' : ''}`,
+      `/?search=${search}&page=${1}${selected ? '&orderby=relevance' : ''}`,
     )
   }
 
