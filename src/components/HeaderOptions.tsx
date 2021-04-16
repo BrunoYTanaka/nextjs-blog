@@ -23,11 +23,13 @@ function HeaderOptions(): ReactElement {
           Mais Relevantes
         </span>
       </button>
-      <div className="flex">
-        <span className="ml-2 text-sm">
-          {result} <strong>resultados</strong>
-        </span>
-      </div>
+      {result > 0 && (
+        <div className="flex">
+          <span className="ml-2 text-sm">
+            {result} <strong>resultados</strong>
+          </span>
+        </div>
+      )}
     </div>
   )
 }

@@ -32,15 +32,17 @@ function AuthorCard({
         }`}
         dangerouslySetInnerHTML={{ __html: description }}
       />
-      <div className="flex flex-row">
-        <button
-          onClick={() => handleExpand(!expand)}
-          className="mt-2 text-green-400 hover:text-green-500 focus:outline-none"
-          type="button"
-        >
-          Expandir
-        </button>
-      </div>
+      {description && (
+        <div className="flex flex-row">
+          <button
+            onClick={() => handleExpand(!expand)}
+            className="mt-2 text-green-400 hover:text-green-500 focus:outline-none"
+            type="button"
+          >
+            Expandir
+          </button>
+        </div>
+      )}
     </div>
   )
 }

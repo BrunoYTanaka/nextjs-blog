@@ -70,7 +70,9 @@ function Article({
 export default Article
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await api.get(`/v1/posts`).then(response => response.data)
+  const data = await api
+    .get(`/v1/posts/?orderby=relevance`)
+    .then(response => response.data)
 
   return {
     paths: data.map((item: { id: number }) => ({

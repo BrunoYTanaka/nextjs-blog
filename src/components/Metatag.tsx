@@ -48,7 +48,7 @@ function Metatag({
         article: {
           authors: [articlePublisher],
           section: articleSection,
-          tags: articleTag.map(tag => tag.content),
+          tags: articleTag?.map(tag => tag.content),
         },
         url: ogUrl,
         title: ogTitle,

@@ -10,17 +10,13 @@ interface TagsProps {
 function Tags({ tags }: TagsProps): ReactElement {
   return (
     <div className="flex items-center">
-      {tags &&
-        tags.map(tag => {
-          return (
-            <div
-              className="text-sm bg-blue-300 rounded-lg p-2 mr-2"
-              key={tag.id}
-            >
-              {tag.name}
-            </div>
-          )
-        })}
+      {tags?.map(tag => {
+        return (
+          <div className="text-sm bg-blue-300 rounded-lg p-2 mr-2" key={tag.id}>
+            {tag.name}
+          </div>
+        )
+      })}
     </div>
   )
 }

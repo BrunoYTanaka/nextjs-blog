@@ -49,5 +49,5 @@ export const getServerSideProps: GetServerSideProps = async context => {
       .then(response => response.data)
     return { props: { results: data } }
   }
-  return { props: { results: { data: [], size: 0, pages: 0 } } }
+  return { props: { results: { data: [], size: -1, pages: 0 } } }
 }
