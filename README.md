@@ -11,21 +11,18 @@
   - [3. Installation & Set Up](#3-installation--set-up)
 
 # 1. About the project
-  This project was developed using [NextJS](https://nextjs.org/) .
+  This project was developed using [NextJS](https://nextjs.org/) using [REST API Wordpress do Mejor Con Salud](https://api.beta.mejorconsalud.com/wp-json/mc/v1/).
 
-  It is a blog for search for articles about health and self care.
+  It is a web for search articles about health and self care provided by api.
 
 # 2. Libraries & Frameworks
 
 | Name                                                     | Description                                                            |
 | -------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [Express](https://github.com/expressjs/express)          | Fast, unopinionated, minimalist web framework for node.                |
-| [KnexJS](http://knexjs.org/)                             | A SQL Query Builder for Javascript.
-| [Nodemon](https://nodemon.io/)|Nodemon is a tool that helps develop node.js based applications by   automatically restarting the node application when file changes in the directory are detected.                                      |
-| [Jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)| An implementation of JSON Web Tokens.                                 |
-| [Nodemailer](https://nodemailer.com/)                    | A module for Node.js applications to allow easy as cake email sending. |
-| [Jest](https://jestjs.io/)                               | A delightful JavaScript Testing Framework with a focus on simplicity.  |
-
+| [NextJS](https://nextjs.org/)           | Vercel combines the best developer experience with an obsessive focus on end-user performance. Our platform enables frontend teams to do their best work.               |
+| [Tailwind CSS](https://tailwindcss.com/)                             | A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.
+| [Axios](https://axios-http.com/)|   Axios is a simple promise based HTTP client for the browser and node.js.                      |
+| [React Icons](https://react-icons.github.io/react-icons/)| Include popular icons in your React projects easily with react-icons, which utilizes ES6 imports that allows you to include only the icons that your project is using.                              |
 
 # 3. Installation & Set Up
 
