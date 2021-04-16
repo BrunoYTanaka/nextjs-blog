@@ -1,11 +1,14 @@
 import React, { ReactElement } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
+import { format } from 'date-fns'
 import Metatag, { MetatagProps } from '../../components/Metatag'
 import AuthorCard from '../../components/AuthorCard'
 import Bibliography from '../../components/Bibliography'
 import Tags from '../../components/Tags'
 import api from '../../services/api'
+import BackToTop from '../../components/BackToTop'
+import Back from '../../components/Back'
 
 interface ArticleProps {
   id: number
@@ -47,7 +50,9 @@ function Article({
         <header className="text-4xl font-bold text-blue-400">{title}</header>
         <div className="w-full flex flex-row mt-4 items-start">
           <div className="text-sm text-red-400 font-normal ">{author.name}</div>
-          <div className="text-sm ml-2">{published}</div>
+          <div className="text-sm ml-2 text-gray-500 font-bold">
+            {format(new Date(published), "dd LLLL',' yyyy")}
+          </div>
         </div>
         <div className="content">
           <div dangerouslySetInnerHTML={{ __html: content }} />
@@ -55,6 +60,8 @@ function Article({
         <Tags tags={tags} />
         <Bibliography bibliography={bibliography} />
         <AuthorCard {...author} />
+        <BackToTop />
+        <Back />
       </div>
     </>
   )

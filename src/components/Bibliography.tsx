@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react'
+import { ReactElement, useState } from 'react'
 import { BiPlus } from 'react-icons/bi'
 
 interface BibliographyProps {

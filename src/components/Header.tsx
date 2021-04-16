@@ -1,4 +1,4 @@
-import React, { ReactElement, useContext } from 'react'
+import { ReactElement, useContext } from 'react'
 import { BiSearch } from 'react-icons/bi'
 import HeaderOptions from './HeaderOptions'
 import { SearchContext } from '../contexts/SearchContext'
