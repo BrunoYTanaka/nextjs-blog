@@ -1,6 +1,7 @@
 import React, { ReactElement, useMemo } from 'react'
 import { useRouter } from 'next/router'
-import usePagination, { LEFT_PAGE, RIGHT_PAGE } from '../hooks/usePagination'
+import usePagination from '../hooks/usePagination'
+import { LEFT_PAGE, RIGHT_PAGE, PAGE_NEIGHBOURS } from '../constants/pagination'
 
 // based on
 // https://www.digitalocean.com/community/tutorials/how-to-build-custom-pagination-with-react-pt
@@ -11,12 +12,12 @@ interface PaginationProps {
 
 function Pagination({ size }: PaginationProps): ReactElement {
   const router = useRouter()
-  const pageNeighbours = 0
+  const pageNeighbours = PAGE_NEIGHBOURS
   const currentPage = useMemo(() => Number(router.query.page) || 1, [
     router.query.page,
   ])
   const totalPages = useMemo(() => Math.ceil(size / 10), [size])
-  const pages = usePagination({ currentPage, totalPages })
+  const pages = usePagination({ pageNeighbours, currentPage, totalPages })
 
   const gotoPage = (page: number) => {
     const newPage = Math.max(0, Math.min(page, totalPages))
@@ -35,11 +36,11 @@ function Pagination({ size }: PaginationProps): ReactElement {
   }
 
   const handleMoveLeft = () => {
-    gotoPage(currentPage - pageNeighbours * 2 - 1)
+    gotoPage(currentPage - pageNeighbours - 1)
   }
 
   const handleMoveRight = () => {
-    gotoPage(currentPage + pageNeighbours * 2 + 1)
+    gotoPage(currentPage + pageNeighbours + 1)
   }
 
   if (totalPages <= 1) {

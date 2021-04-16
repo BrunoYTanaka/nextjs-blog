@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
-
-export const LEFT_PAGE = -2
-export const RIGHT_PAGE = -1
+import { LEFT_PAGE, RIGHT_PAGE } from '../constants/pagination'
 
 const range = (from: number, to: number, step = 1): number[] => {
   let i = from
@@ -16,16 +14,17 @@ const range = (from: number, to: number, step = 1): number[] => {
 }
 
 interface usePaginationProps {
+  pageNeighbours: number
   currentPage: number
   totalPages: number
 }
 
 function usePagination({
+  pageNeighbours,
   currentPage,
   totalPages,
 }: usePaginationProps): number[] {
   const [pages, setPages] = useState<number[]>([])
-  const pageNeighbours = 1
 
   useEffect(() => {
     const totalNumbers = pageNeighbours * 2 + 3
