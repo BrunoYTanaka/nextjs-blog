@@ -2,28 +2,32 @@ import { ReactElement } from 'react'
 import { NextSeo } from 'next-seo'
 
 export interface MetatagProps {
-  ampUrl: string
-  canonical: string
-  'og:type': string
-  'og:site_name': string
-  'og:title': string
-  'og:description': string
-  'og:image': string
-  'og:image:alt': string
-  'og:image:width': number
-  'og:image:height': number
-  'article:publisher': string
-  'article:tag': {
+  ampUrl?: string
+  canonical?: string
+  title?: string
+  description?: string
+  'og:type'?: string
+  'og:site_name'?: string
+  'og:title'?: string
+  'og:description'?: string
+  'og:image'?: string
+  'og:image:alt'?: string
+  'og:image:width'?: number
+  'og:image:height'?: number
+  'article:publisher'?: string
+  'article:tag'?: {
     content: string
   }[]
-  'article:section': string
-  'twitter:site': string
-  'twitter:creator': string
+  'article:section'?: string
+  'twitter:site'?: string
+  'twitter:creator'?: string
 }
 
 function Metatag({
   ampUrl: ogUrl,
   canonical,
+  title,
+  description,
   'og:description': ogDescription,
   'og:type': ogType,
   'og:image': ogImage,
@@ -40,8 +44,8 @@ function Metatag({
 }: MetatagProps): ReactElement {
   return (
     <NextSeo
-      title={ogTitle}
-      description={ogDescription}
+      title={title || ogTitle}
+      description={description || ogDescription}
       canonical={canonical}
       openGraph={{
         type: ogType,

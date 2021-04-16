@@ -58,7 +58,9 @@ function Article({
       <div className="flex flex-col justify-center p-5 max-w-5xl mx-auto">
         <header className="text-4xl font-bold text-blue-400">{title}</header>
         <div className="w-full flex flex-row mt-4 items-start">
-          <div className="text-sm text-red-400 font-normal ">{author.name}</div>
+          <div className="text-sm text-red-400 font-normal ">
+            {author.name},
+          </div>
           <div className="text-sm ml-2 text-gray-500 font-bold">
             {format(new Date(published), "dd LLLL',' yyyy")}
           </div>
