@@ -6,8 +6,6 @@
 @layer components {
   .content {
     @apply sm:text-sm;
-    /* margin-top: 1.25rem;
-    display: flex; */
   }
 
   .content p {
@@ -29,10 +27,6 @@
   .content figure img {
     width: 500px;
     height: 300px;
-  }
-
-  .content figure figcaption {
-    @apply absolute text-left;
   }
 
   .content h4 {

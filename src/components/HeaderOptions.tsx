@@ -1,4 +1,4 @@
-import React, { ReactElement, useContext } from 'react'
+import { ReactElement, useContext } from 'react'
 
 import { FcSearch } from 'react-icons/fc'
 import { SearchContext } from '../contexts/SearchContext'

@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import { ReactElement } from 'react'
 import { NextSeo } from 'next-seo'
 
 export interface MetatagProps {
