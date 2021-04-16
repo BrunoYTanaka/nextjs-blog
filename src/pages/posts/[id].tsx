@@ -1,14 +1,18 @@
-import React, { ReactElement } from 'react'
+import { ReactElement } from 'react'
+import dynamic from 'next/dynamic'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import { format } from 'date-fns'
 import Metatag, { MetatagProps } from '../../components/Metatag'
 import AuthorCard from '../../components/AuthorCard'
-import Bibliography from '../../components/Bibliography'
-import Tags from '../../components/Tags'
 import api from '../../services/api'
 import BackToTop from '../../components/BackToTop'
 import Back from '../../components/Back'
+
+const DynamicTags = dynamic(() => import('../../components/Tags'))
+const DynamicBibliography = dynamic(
+  () => import('../../components/Bibliography'),
+)
 
 interface ArticleProps {
   id: number
@@ -18,6 +22,10 @@ interface ArticleProps {
     description: string
   }
   tags: {
+    id: number
+    name: string
+  }[]
+  categories: {
     id: number
     name: string
   }[]
@@ -36,11 +44,12 @@ function Article({
   tags,
   bibliography,
   metas,
+  categories,
 }: ArticleProps): ReactElement {
   const router = useRouter()
 
   if (router.isFallback) {
-    return <div />
+    return null
   }
 
   return (
@@ -54,11 +63,14 @@ function Article({
             {format(new Date(published), "dd LLLL',' yyyy")}
           </div>
         </div>
+        {categories && (
+          <DynamicTags title="Categorias" tags={categories} type="category" />
+        )}
         <div className="content">
           <div dangerouslySetInnerHTML={{ __html: content }} />
         </div>
-        <Tags tags={tags} />
-        <Bibliography bibliography={bibliography} />
+        {tags && <DynamicTags tags={tags} />}
+        {bibliography && <DynamicBibliography bibliography={bibliography} />}
         <AuthorCard {...author} />
         <BackToTop />
         <Back />

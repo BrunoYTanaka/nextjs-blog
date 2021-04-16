@@ -41,6 +41,14 @@
     @apply my-3;
   }
 
+  .tag {
+   @apply text-sm bg-blue-300 rounded-lg p-2 mr-2;
+  }
+
+  .category {
+    @apply text-sm bg-white underline p-2 mr-2;
+  }
+
   .pagination {
     @apply flex my-0 shadow rounded-md border border-gray-300 divide-x mx-auto lg:mx-0;
   }

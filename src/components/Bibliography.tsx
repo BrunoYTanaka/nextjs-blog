@@ -10,8 +10,6 @@ function Bibliography({ bibliography }: BibliographyProps): ReactElement {
 
   const handleExpand = (value: boolean) => setExpand(value)
 
-  if (!bibliography) return null
-
   return (
     <div className="flex flex-col items-start py-5">
       <div className="group">

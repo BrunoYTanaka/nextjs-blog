@@ -1,5 +1,7 @@
 import { ReactElement } from 'react'
-import ListItem from './ListItem'
+import dynamic from 'next/dynamic'
+
+const DynamicListItem = dynamic(() => import('./ListItem'))
 
 interface ListProps {
   size: number
@@ -16,7 +18,7 @@ function List({ size, list }: ListProps): ReactElement {
     <div className="w-full px-3 sm:pl-[5%] md:pl-[14%] lg:pl-52 flex-grow">
       {size ? (
         list?.map(item => {
-          return <ListItem key={item.id} {...item} />
+          return <DynamicListItem key={item.id} {...item} />
         })
       ) : (
         <div className="h-full flex flex-col mt-10">

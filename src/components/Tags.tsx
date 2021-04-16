@@ -1,24 +1,32 @@
 import { ReactElement } from 'react'
 
 interface TagsProps {
+  title?: string
+  type?: string
   tags: {
     id: number
     name: string
   }[]
 }
 
-function Tags({ tags }: TagsProps): ReactElement {
+function Tags({ title, type, tags }: TagsProps): ReactElement {
   return (
-    <div className="flex items-center">
-      {tags?.map(tag => {
+    <div className="my-5 flex items-center">
+      {title && <span className="text-md mr-2 text-gray-500">{title}:</span>}
+      {tags.map(tag => {
         return (
-          <div className="text-sm bg-blue-300 rounded-lg p-2 mr-2" key={tag.id}>
+          <div className={type} key={tag.id}>
             {tag.name}
           </div>
         )
       })}
     </div>
   )
+}
+
+Tags.defaultProps = {
+  title: '',
+  type: 'tag',
 }
 
 export default Tags
