@@ -5,7 +5,6 @@ import { SearchContext } from '../contexts/SearchContext'
 
 function HeaderOptions(): ReactElement {
   const { selected, handleSelected, result } = useContext(SearchContext)
-
   return (
     <div
       className="flex w-full justify-between mt-2 max-w-md px-5 py-3 items-center

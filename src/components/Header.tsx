@@ -11,7 +11,6 @@ function Header(): ReactElement {
     handleKeyDownSearch,
     handleSearchInput,
   } = useContext(SearchContext)
-
   return (
     <>
       <Metatag title={search || 'Search'} description="Saúde e Bem-estar" />
@@ -23,6 +22,7 @@ function Header(): ReactElement {
           >
             <input
               type="text"
+              placeholder="Pesquisar"
               className="w-full focus:outline-none"
               value={search}
               onChange={handleSearchInput}

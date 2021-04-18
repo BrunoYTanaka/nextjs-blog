@@ -24,6 +24,7 @@ function Bibliography({ bibliography }: BibliographyProps): ReactElement {
       </div>
       {expand && (
         <div
+          data-testid="content"
           className="content"
           dangerouslySetInnerHTML={{ __html: bibliography }}
         />
