@@ -18,7 +18,7 @@ interface PaginationProps {
 function Pagination({ size }: PaginationProps): ReactElement {
   const router = useRouter()
   const pageNeighbours = PAGE_NEIGHBOURS
-  const currentPage = useMemo(() => Number(router.query.page) || 1, [
+  const currentPage = useMemo(() => Math.abs(Number(router.query.page)) || 1, [
     router.query.page,
   ])
   const totalPages = useMemo(() => Math.ceil(size / TOTAL_PER_PAGE), [size])

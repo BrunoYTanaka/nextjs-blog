@@ -1,14 +1,11 @@
 import { ReactElement } from 'react'
 import { GetServerSideProps } from 'next'
-import Head from 'next/head'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
 import { SearchProvider } from '../contexts/SearchContext'
 import Header from '../components/Header'
 import List from '../components/List'
 import api from '../services/api'
 import { TOTAL_PER_PAGE } from '../constants/pagination'
-import Metatag from '../components/Metatag'
 
 const DynamicPagination = dynamic(() => import('../components/Pagination'))
 
@@ -27,13 +24,8 @@ interface HomeProps {
 }
 
 export default function Home({ results }: HomeProps): ReactElement {
-  const router = useRouter()
   return (
     <div className="flex flex-col h-screen justify-between ">
-      {/* <Head>
-        <title>Translation Inc.</title>
-        <meta name="description" content="Busca com wp" />
-      </Head> */}
       <SearchProvider result={results.size}>
         <Header />
       </SearchProvider>
@@ -52,7 +44,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
       .get(
         `/v2/posts?search=${encodeURIComponent(search as string)}${
           orderby === 'relevance' ? `&orderby=${orderby}` : ''
-        }&page=${page}`,
+        }&page=${Math.abs(Number(page))}`,
       )
       .then(response => response.data)
     return { props: { results: data } }
