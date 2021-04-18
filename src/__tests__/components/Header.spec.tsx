@@ -55,6 +55,19 @@ describe('Header', () => {
     expect(mockedPush).toHaveBeenCalled()
   })
 
+  it('should render header and search with keydown', () => {
+    const { getByPlaceholderText } = render(
+      <SearchProvider result={0}>
+        <Header />
+      </SearchProvider>,
+    )
+
+    const input = getByPlaceholderText('Pesquisar')
+    fireEvent.change(input, { target: { value: 'pies' } })
+    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' })
+    expect(mockedPush).toHaveBeenCalled()
+  })
+
   it('should render header and search by revelance', () => {
     const mockedHandleSelected = jest.fn()
     const { getAllByRole, getByPlaceholderText } = render(
