@@ -27,8 +27,9 @@ function AuthorCard({
         <span className="ml-4 font-bold text-lg">{name}</span>
       </div>
       <div
+        data-testid="content"
         className={`text-gray-500 md:text-base text-sm ${
-          expand ? '' : 'max-h-20 overflow-y-hidden '
+          expand ? '' : 'max-h-20 overflow-y-hidden'
         }`}
         dangerouslySetInnerHTML={{ __html: description }}
       />

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev -p 9045",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest"
   },
   "dependencies": {
     "@types/react": "^17.0.3",
@@ -19,9 +20,12 @@
     "react-icons": "^4.2.0"
   },
   "devDependencies": {
+    "@testing-library/react": "^11.2.6",
+    "@types/jest": "^26.0.22",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "autoprefixer": "^10.2.5",
+    "babel-jest": "^26.6.3",
     "eslint": "^7.24.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.2.0",
@@ -31,9 +35,11 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "jest": "^26.6.3",
     "postcss": "^8.2.10",
     "prettier": "^2.2.1",
     "tailwindcss": "^2.1.1",
+    "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
   }
 }
