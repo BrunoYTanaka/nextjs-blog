@@ -1,8 +1,5 @@
 # Blog Search
 
-# Project Preview
-![Project Preview](preview.gif)
-
 # Table of Content
 
 - [Table of Content](#table-of-content)
