@@ -1,7 +1,7 @@
 import { ReactElement, useContext } from 'react'
 import { BiSearch } from 'react-icons/bi'
+import { SearchContext } from '@/contexts/SearchContext'
 import HeaderOptions from './HeaderOptions'
-import { SearchContext } from '../contexts/SearchContext'
 import Metatag from './Metatag'
 
 function Header(): ReactElement {

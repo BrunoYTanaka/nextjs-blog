@@ -1,7 +1,7 @@
 import { ReactElement, useContext } from 'react'
 
 import { FcSearch } from 'react-icons/fc'
-import { SearchContext } from '../contexts/SearchContext'
+import { SearchContext } from '@/contexts/SearchContext'
 
 function HeaderOptions(): ReactElement {
   const { selected, handleSelected, result } = useContext(SearchContext)

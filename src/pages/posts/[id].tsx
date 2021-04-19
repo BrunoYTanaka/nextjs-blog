@@ -3,16 +3,14 @@ import dynamic from 'next/dynamic'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import { format } from 'date-fns'
-import Metatag, { MetatagProps } from '../../components/Metatag'
-import AuthorCard from '../../components/AuthorCard'
-import api from '../../services/api'
-import BackToTop from '../../components/BackToTop'
-import Back from '../../components/Back'
+import Metatag, { MetatagProps } from '@/components/Metatag'
+import AuthorCard from '@/components/AuthorCard'
+import api from '@/services/api'
+import BackToTop from '@/components/BackToTop'
+import Back from '@/components/Back'
 
-const DynamicTags = dynamic(() => import('../../components/Tags'))
-const DynamicBibliography = dynamic(
-  () => import('../../components/Bibliography'),
-)
+const DynamicTags = dynamic(() => import('@/components/Tags'))
+const DynamicBibliography = dynamic(() => import('@/components/Bibliography'))
 
 interface ArticleProps {
   id: number

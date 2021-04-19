@@ -23,7 +23,7 @@ function NotFound(): ReactElement {
             type="button"
             onClick={handleBack}
           >
-            Clique parar voltar
+            Clique para voltar
           </button>
         </div>
       </div>

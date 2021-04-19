@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react'
-import BackToTop from '../../components/BackToTop'
+import BackToTop from '@/components/BackToTop'
 
 describe('BackToTop', () => {
   it('should render back to top button hidden', () => {

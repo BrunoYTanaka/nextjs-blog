@@ -1,5 +1,5 @@
 import { render, fireEvent } from '@testing-library/react'
-import AuthCard from '../../components/AuthorCard'
+import AuthCard from '@/components/AuthorCard'
 
 const mockAuthor = {
   name: 'Gerald the Rivia',

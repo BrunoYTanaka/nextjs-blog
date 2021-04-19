@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react'
-import Pagination from '../../components/Pagination'
+import Pagination from '@/components/Pagination'
 
 const mockedPush = jest.fn()
 
@@ -15,8 +15,6 @@ jest.mock('next/router', () => ({
 }))
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
-
-// jest.mock('../../hooks/usePagination', () => () => [1, 2, 3, 4, 5, 6, 7, 8])
 
 describe('Pagination', () => {
   it('should render pagination', () => {
