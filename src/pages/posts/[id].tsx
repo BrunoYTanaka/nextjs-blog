@@ -3,14 +3,14 @@ import dynamic from 'next/dynamic'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import { format } from 'date-fns'
-import Metatag, { MetatagProps } from '@/components/Metatag'
-import AuthorCard from '@/components/AuthorCard'
-import api from '@/services/api'
-import BackToTop from '@/components/BackToTop'
-import Back from '@/components/Back'
+import Metatag, { MetatagProps } from '@components/Metatag'
+import AuthorCard from '@components/AuthorCard'
+import api from '@services/api'
+import BackToTop from '@components/BackToTop'
+import Back from '@components/Back'
 
-const DynamicTags = dynamic(() => import('@/components/Tags'))
-const DynamicBibliography = dynamic(() => import('@/components/Bibliography'))
+const DynamicTags = dynamic(() => import('@components/Tags'))
+const DynamicBibliography = dynamic(() => import('@components/Bibliography'))
 
 interface ArticleProps {
   id: number
@@ -82,10 +82,10 @@ function Article({
 export default Article
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await api
+  const request = api
     .get(`/v1/posts/?orderby=relevance`)
     .then(response => response.data)
-
+  const data = await request
   return {
     paths: data.map((item: { id: number }) => ({
       params: { id: item.id.toString() },

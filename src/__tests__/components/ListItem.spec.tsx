@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import ListItem from '@/components/ListItem'
+import ListItem from '@components/ListItem'
 
 const mockedListItem = {
   id: 1,

@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react'
-import Pagination from '@/components/Pagination'
+import Pagination from '@components/Pagination'
 
 const mockedPush = jest.fn()
 

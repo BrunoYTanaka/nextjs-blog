@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react'
-import Back from '@/components/Back'
+import Back from '@components/Back'
 
 const mockedBack = jest.fn()
 jest.mock('next/router', () => ({

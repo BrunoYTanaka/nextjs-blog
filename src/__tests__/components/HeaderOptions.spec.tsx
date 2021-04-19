@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
-import { SearchProvider } from '@/contexts/SearchContext'
-import HeaderOptions from '@/components/HeaderOptions'
+import { SearchProvider } from '@contexts/SearchContext'
+import HeaderOptions from '@components/HeaderOptions'
 
 const mockedPush = jest.fn()
 

@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import Metatag from '@/components/Metatag'
+import Metatag from '@components/Metatag'
 
 jest.mock('next/head', () => {
   return {

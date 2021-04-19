@@ -1,12 +1,12 @@
 import React, { ReactElement, useMemo } from 'react'
 import { useRouter } from 'next/router'
-import usePagination from '@/hooks/usePagination'
+import usePagination from '@hooks/usePagination'
 import {
   LEFT_PAGE,
   RIGHT_PAGE,
   PAGE_NEIGHBOURS,
   TOTAL_PER_PAGE,
-} from '@/constants/pagination'
+} from '@constants/pagination'
 
 // based on
 // https://www.digitalocean.com/community/tutorials/how-to-build-custom-pagination-with-react-pt

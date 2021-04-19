@@ -1,13 +1,13 @@
 import { ReactElement } from 'react'
 import { GetServerSideProps } from 'next'
 import dynamic from 'next/dynamic'
-import { SearchProvider } from '@/contexts/SearchContext'
-import Header from '@/components/Header'
-import List from '@/components/List'
-import api from '@/services/api'
-import { TOTAL_PER_PAGE } from '@/constants/pagination'
+import { SearchProvider } from '@contexts/SearchContext'
+import Header from '@components/Header'
+import List from '@components/List'
+import api from '@services/api'
+import { TOTAL_PER_PAGE } from '@constants/pagination'
 
-const DynamicPagination = dynamic(() => import('@/components/Pagination'))
+const DynamicPagination = dynamic(() => import('@components/Pagination'))
 
 interface Item {
   id: number

@@ -19,12 +19,12 @@
     "jsx": "preserve",
     "baseUrl": "./src",
     "paths":{
-      "@/components/*":["components/*"],
-      "@/pages/*":["pages/*"],
-      "@/hooks/*":["hooks/*"],
-      "@/constants/*":["constants/*"],
-      "@/services/*":["services/*"],
-      "@/contexts/*":["contexts/*"],
+      "@components/*":["components/*"],
+      "@pages/*":["pages/*"],
+      "@hooks/*":["hooks/*"],
+      "@constants/*":["constants/*"],
+      "@services/*":["services/*"],
+      "@contexts/*":["contexts/*"],
     }
   },
   "include": [

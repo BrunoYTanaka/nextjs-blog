@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react'
-import NotFound from '@/pages/404'
+import NotFound from '@pages/404'
 
 const mockedBack = jest.fn()
 jest.mock('next/router', () => ({

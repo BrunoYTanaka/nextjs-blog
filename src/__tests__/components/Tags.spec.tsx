@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import Tags from '@/components/Tags'
+import Tags from '@components/Tags'
 
 const mockCategories = {
   title: 'Categorias',

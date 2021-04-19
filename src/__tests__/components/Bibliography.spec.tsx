@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react'
-import Bibliography from '@/components/Bibliography'
+import Bibliography from '@components/Bibliography'
 
 const mockBibliography = {
   bibliography: '<p> bibliography </p>',

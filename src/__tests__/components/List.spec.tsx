@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import List from '@/components/List'
+import List from '@components/List'
 
 jest.mock('next/dynamic', () => func => {
   let component = null

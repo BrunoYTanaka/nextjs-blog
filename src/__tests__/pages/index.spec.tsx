@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react'
 import MockAdapter from 'axios-mock-adapter'
 import { createRequest, createResponse } from 'node-mocks-http'
-import Home, { getServerSideProps } from '@/pages/index'
-import api from '@/services/api'
+import Home, { getServerSideProps } from '@pages/index'
+import api from '@services/api'
 
 const mockedPush = jest.fn()
 jest.mock('next/router', () => ({
