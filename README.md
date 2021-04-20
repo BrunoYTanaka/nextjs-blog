@@ -1,7 +1,8 @@
 # Blog Search
 
 # Project Preview
-![Project Preview](preview.gif)
+<!-- ![Project Preview](./preview.gif =100x) -->
+<img src="./preview.gif" width="500px">
 
 # Table of Content
 
@@ -23,6 +24,10 @@
 | [Tailwind CSS](https://tailwindcss.com/)                             | A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.
 | [Axios](https://axios-http.com/)|   Axios is a simple promise based HTTP client for the browser and node.js.                      |
 | [React Icons](https://react-icons.github.io/react-icons/)| Include popular icons in your React projects easily with react-icons, which utilizes ES6 imports that allows you to include only the icons that your project is using.                              |
+| [Jest](https://jestjs.io/)    | A delightful JavaScript Testing Framework with a focus on simplicity. |
+| [React Testing Library](https://testing-library.com/) |Simple and complete testing utilities that encourage good testing practices. |
+| [React Hooks Testing Library](https://react-hooks-testing-library.com/) | Simple and complete React hooks testing utilities that encourage good testing practices. |
+
 
 # 3. Installation & Set Up
 
