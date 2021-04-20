@@ -72,6 +72,9 @@ jest.mock('next/dynamic', () => func => {
 })
 
 describe('Article Page', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
   describe('getStaticPaths', () => {
     it('should match props', async () => {
       mockApi.onGet(`/v1/posts/?orderby=relevance`).reply(200, mockStaticPaths)

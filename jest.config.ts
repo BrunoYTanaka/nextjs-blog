@@ -87,6 +87,7 @@ export default {
     '@hooks/(.*)$': '<rootDir>/src/hooks/$1',
     '@contexts/(.*)$': '<rootDir>/src/contexts/$1',
     '@constants/(.*)$': '<rootDir>/src/constants/$1',
+    '\\.(css|less)$': '<rootDir>/src/__mocks__/styleMock.ts',
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader

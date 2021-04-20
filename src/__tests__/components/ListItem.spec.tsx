@@ -9,6 +9,9 @@ const mockedListItem = {
 }
 
 describe('ListItem', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
   it('render a list item', () => {
     const { getByText } = render(<ListItem {...mockedListItem} />)
 

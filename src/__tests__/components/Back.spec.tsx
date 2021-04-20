@@ -9,22 +9,25 @@ jest.mock('next/router', () => ({
 }))
 
 describe('Back', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
   it('should render back button', () => {
     const { getByText } = render(<Back />)
 
-    const backButton = getByText('Voltar')
+    const backBtn = getByText('Voltar')
 
-    expect(backButton.textContent).toBe('Voltar')
+    expect(backBtn.textContent).toBe('Voltar')
   })
 
   it('should render back button and call router back', () => {
     const { getByText } = render(<Back />)
 
-    const backButton = getByText('Voltar')
+    const backBtn = getByText('Voltar')
 
-    expect(backButton.textContent).toBe('Voltar')
+    expect(backBtn.textContent).toBe('Voltar')
 
-    fireEvent.click(backButton)
+    fireEvent.click(backBtn)
 
     expect(mockedBack).toHaveBeenCalled()
   })

@@ -17,6 +17,9 @@ const mockedMetas = {
 }
 
 describe('Metatag', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
   it('render metas', () => {
     render(<Metatag {...mockedMetas} />, {
       container: document.head,

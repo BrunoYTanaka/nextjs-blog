@@ -15,7 +15,13 @@ jest.mock('next/router', () => ({
   }),
 }))
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const useRouter = jest.spyOn(require('next/router'), 'useRouter')
+
 describe('Header', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
   it('should render header', () => {
     const { getByPlaceholderText, getAllByRole } = render(<Header />)
 
@@ -49,10 +55,24 @@ describe('Header', () => {
     )
 
     const input = getByPlaceholderText('Pesquisar')
-    const [button] = getAllByRole('button')
+    const [searchBtn] = getAllByRole('button')
     fireEvent.change(input, { target: { value: 'pies' } })
-    fireEvent.click(button)
-    expect(mockedPush).toHaveBeenCalled()
+    fireEvent.click(searchBtn)
+    expect(mockedPush).toHaveBeenCalledWith('/?search=pies&page=1')
+  })
+
+  it('should not search without value', () => {
+    const { getByPlaceholderText, getAllByRole } = render(
+      <SearchProvider result={0}>
+        <Header />
+      </SearchProvider>,
+    )
+
+    const input = getByPlaceholderText('Pesquisar')
+    const [searchBtn] = getAllByRole('button')
+    fireEvent.change(input, { target: { value: '' } })
+    fireEvent.click(searchBtn)
+    expect(mockedPush).not.toHaveBeenCalled()
   })
 
   it('should render header and search with keydown', () => {
@@ -65,33 +85,80 @@ describe('Header', () => {
     const input = getByPlaceholderText('Pesquisar')
     fireEvent.change(input, { target: { value: 'pies' } })
     fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' })
-    expect(mockedPush).toHaveBeenCalled()
+    expect(mockedPush).toHaveBeenCalledWith('/?search=pies&page=1')
   })
 
   it('should render header and search by revelance', () => {
-    const mockedHandleSelected = jest.fn()
     const { getAllByRole, getByPlaceholderText } = render(
-      <SearchContext.Provider
-        value={{
-          handleClickSearch: jest.fn(),
-          handleKeyDownSearch: jest.fn(),
-          handleSearchInput: jest.fn(),
-          handleSelected: mockedHandleSelected,
-          result: 0,
-          search: '',
-          selected: true,
-        }}
-      >
+      <SearchProvider result={10}>
         <Header />
-      </SearchContext.Provider>,
+      </SearchProvider>,
     )
 
-    const [, button] = getAllByRole('button')
+    const [, orderbyBtn] = getAllByRole('button')
     const input = getByPlaceholderText('Pesquisar')
     fireEvent.change(input, { target: { value: 'pies' } })
+    fireEvent.click(orderbyBtn)
 
-    fireEvent.click(button)
-    expect(button.className).toContain('bg-blue-500 hover:bg-blue-400')
-    expect(mockedHandleSelected).toHaveBeenCalled()
+    expect(mockedPush).toBeCalledWith('/?search=pies&page=1&orderby=relevance')
+  })
+
+  it('should render header and not search by revelance without value', () => {
+    const { getAllByRole } = render(
+      <SearchProvider result={10}>
+        <Header />
+      </SearchProvider>,
+    )
+
+    const [, orderbyBtn] = getAllByRole('button')
+    fireEvent.click(orderbyBtn)
+
+    expect(mockedPush).not.toBeCalled()
+  })
+
+  it('should render header search by pies when orderby is selected', () => {
+    useRouter.mockImplementation(() => ({
+      query: {
+        search: 'unhas',
+        orderby: 'relevance',
+      },
+      push: mockedPush,
+    }))
+
+    const { getAllByRole, getByPlaceholderText } = render(
+      <SearchProvider result={10}>
+        <Header />
+      </SearchProvider>,
+    )
+
+    const input = getByPlaceholderText('Pesquisar')
+    const [searchBtn] = getAllByRole('button')
+    fireEvent.change(input, { target: { value: 'pies' } })
+    fireEvent.click(searchBtn)
+    expect(mockedPush).toHaveBeenCalledWith(
+      '/?search=pies&page=1&orderby=relevance',
+    )
+  })
+
+  it('should render header search by pies not orderby relevance', () => {
+    useRouter.mockImplementation(() => ({
+      query: {
+        search: 'unhas',
+        orderby: 'relevance',
+      },
+      push: mockedPush,
+    }))
+
+    const { getAllByRole, getByPlaceholderText } = render(
+      <SearchProvider result={10}>
+        <Header />
+      </SearchProvider>,
+    )
+
+    const input = getByPlaceholderText('Pesquisar')
+    const [, orderbyBtn] = getAllByRole('button')
+    fireEvent.change(input, { target: { value: 'pies' } })
+    fireEvent.click(orderbyBtn)
+    expect(mockedPush).toHaveBeenCalledWith('/?search=pies&page=1')
   })
 })

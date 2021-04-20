@@ -30,6 +30,9 @@ const mockTags = {
 }
 
 describe('Tags', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
   it('should render tags as categories', () => {
     const { getByText } = render(<Tags {...mockCategories} />)
 

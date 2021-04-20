@@ -45,6 +45,7 @@ const mockData = {
 }
 describe('Home', () => {
   beforeEach(() => {
+    jest.clearAllMocks()
     req = createRequest({
       method: 'GET',
     })
@@ -52,7 +53,7 @@ describe('Home', () => {
   })
 
   describe('getServerSideProps', () => {
-    it('should render first time home', async () => {
+    it('should return default props with empty search', async () => {
       const props = await getServerSideProps({
         resolvedUrl: '',
         req,
@@ -65,45 +66,6 @@ describe('Home', () => {
       expect(props).toEqual({
         props: { results: { data: [], size: -1, pages: 0 } },
       })
-
-      const { getByPlaceholderText, getAllByRole } = render(
-        <Home results={{ data: [], size: -1, pages: 0 }} />,
-      )
-      const input = getByPlaceholderText('Pesquisar')
-      const [button] = getAllByRole('button')
-
-      expect(input).not.toBeNull()
-      expect(button).not.toBeNull()
-    })
-
-    it('should render home search for pies orderby relevance', async () => {
-      mockApi
-        .onGet(`/v2/posts?search=pies&orderby=relevance&page=1`)
-        .reply(200, mockData)
-
-      const props = await getServerSideProps({
-        resolvedUrl: '',
-        req,
-        res,
-        query: {
-          search: 'pies',
-          orderby: 'relevance',
-          page: '1',
-        },
-      })
-
-      expect(props).toEqual({
-        props: { results: { ...mockData } },
-      })
-
-      const { getByPlaceholderText, getAllByRole } = render(
-        <Home results={{ ...mockData }} />,
-      )
-      const input = getByPlaceholderText('Pesquisar')
-      const [, orderByBtn] = getAllByRole('button')
-
-      expect(input).not.toBeNull()
-      expect(orderByBtn).not.toBeNull()
     })
 
     it('should render home search for pies', async () => {
@@ -122,15 +84,27 @@ describe('Home', () => {
       expect(props).toEqual({
         props: { results: { ...mockData } },
       })
+    })
 
-      const { getByPlaceholderText, getAllByRole } = render(
-        <Home results={{ ...mockData }} />,
-      )
-      const input = getByPlaceholderText('Pesquisar')
-      const [, orderByBtn] = getAllByRole('button')
+    it('should search for pies orderby relevance', async () => {
+      mockApi
+        .onGet(`/v2/posts?search=pies&orderby=relevance&page=1`)
+        .reply(200, mockData)
 
-      expect(input).not.toBeNull()
-      expect(orderByBtn).not.toBeNull()
+      const props = await getServerSideProps({
+        resolvedUrl: '',
+        req,
+        res,
+        query: {
+          search: 'pies',
+          orderby: 'relevance',
+          page: '1',
+        },
+      })
+
+      expect(props).toEqual({
+        props: { results: { ...mockData } },
+      })
     })
   })
 

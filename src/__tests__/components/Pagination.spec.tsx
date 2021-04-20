@@ -17,6 +17,9 @@ jest.mock('next/router', () => ({
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
 
 describe('Pagination', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
   it('should render pagination', () => {
     const { getByText } = render(<Pagination size={100} />)
     const page1 = getByText('1')

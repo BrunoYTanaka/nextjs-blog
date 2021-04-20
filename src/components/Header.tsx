@@ -31,7 +31,7 @@ function Header(): ReactElement {
             <button
               type="button"
               onClick={handleClickSearch}
-              className="text-blue-500 hover:text-blue-400 p-2  focus:outline-none"
+              className="text-blue-500 hover:text-blue-400 p-2 focus:outline-none"
             >
               <BiSearch size={24} />
             </button>

@@ -6,6 +6,9 @@ const mockBibliography = {
 }
 
 describe('Bibliography', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
   it('should render bibliography', () => {
     const { getByText, queryByTestId } = render(
       <Bibliography {...mockBibliography} />,

@@ -16,13 +16,16 @@ jest.mock('next/router', () => ({
 }))
 
 describe('HeaderOptions', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
   it('should render headerOptions', () => {
     const { getByText, queryByText } = render(<HeaderOptions />)
 
-    const button = getByText('Mais Relevantes')
+    const orderbyBtn = getByText('Mais Relevantes')
     const results = queryByText('resultados')
 
-    expect(button).not.toBeNull()
+    expect(orderbyBtn).not.toBeNull()
     expect(results).toBeNull()
   })
 
@@ -33,10 +36,10 @@ describe('HeaderOptions', () => {
       </SearchProvider>,
     )
 
-    const button = getByText('Mais Relevantes')
+    const orderbyBtn = getByText('Mais Relevantes')
     const results = queryByText('resultados')
 
-    expect(button).not.toBeNull()
+    expect(orderbyBtn).not.toBeNull()
     expect(results).not.toBeNull()
   })
 })

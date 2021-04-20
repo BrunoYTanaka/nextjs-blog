@@ -9,6 +9,9 @@ jest.mock('next/router', () => ({
 }))
 
 describe('NotFound', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
   it('should render not found', () => {
     const { getByText } = render(<NotFound />)
 
