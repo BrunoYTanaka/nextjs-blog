@@ -134,5 +134,23 @@ describe('Home', () => {
       expect(input).not.toBeNull()
       expect(orderByBtn).not.toBeNull()
     })
+
+    it('render home without results', () => {
+      const mockProps = { ...mockData, size: 0 }
+      const { getByPlaceholderText, getAllByRole, queryByText } = render(
+        <Home results={{ ...mockProps }} />,
+      )
+
+      const input = getByPlaceholderText('Pesquisar')
+      const [, orderByBtn] = getAllByRole('button')
+      const label = queryByText(
+        'Não existem artigos relacionados ao termo pesquisado!',
+      )
+      const page1 = queryByText('1')
+      expect(label).not.toBeNull()
+      expect(page1).toBeNull()
+      expect(input).not.toBeNull()
+      expect(orderByBtn).not.toBeNull()
+    })
   })
 })
